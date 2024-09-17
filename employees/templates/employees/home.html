@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}All Employees{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">All Employees</h1>
+
+<div class="row">
+  {% for employee in employees %}
+    <div class="col-md-4 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ employee.name }}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{ employee.designation }}</h6>
+          <p class="card-text">{{ employee.short_description }}</p>
+          <a href="{% url 'update_employee' employee.id %}" class="btn btn-warning">Update</a>
+          <a href="{% url 'delete_employee' employee.id %}" class="btn btn-danger" 
+             onclick="return confirm('Are you sure you want to delete this employee?');">Delete</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
